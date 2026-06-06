@@ -215,7 +215,7 @@ credentials/
 # CMSIS/
 
 # Scripts
-scripts/
+# scripts/
 
 # Miscellaneous files
 PROGRESS.md
