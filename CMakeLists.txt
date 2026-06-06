@@ -3,6 +3,8 @@ cmake_minimum_required(VERSION 3.20)
 # Project name and languages
 project(bare-metal-stm32f4 LANGUAGES C ASM)
 
+message(STATUS "C compiler: ${CMAKE_C_COMPILER}")
+
 # C standard
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
@@ -13,10 +15,7 @@ set(CMAKE_C_STANDARD_REQUIRED ON)
 # Usage: cmake -DMCU=STM32F407xx ..
 #
 # Supported MCUs (add more as needed):
-#   STM32F401xC, STM32F401xE
-#   STM32F405xx, STM32F407xx
-#   STM32F411xE
-#   STM32F429xx, STM32F446xx
+# STM32F401xE
 # =============================================================================
 
 set(MCU "STM32F401xE" CACHE STRING "Target MCU (e.g., STM32F401xE, STM32F407xx)")
@@ -160,9 +159,7 @@ add_custom_target(openocd
 )
 
 # Start GDB and connect to OpenOCD (requires OpenOCD running)
-# Get compiler directory to find GDB
-get_filename_component(TOOLCHAIN_BIN_DIR ${CMAKE_C_COMPILER} DIRECTORY)
-set(CMAKE_GDB "${TOOLCHAIN_BIN_DIR}/arm-none-eabi-gdb")
+set(CMAKE_GDB "arm-none-eabi-gdb")
 
 add_custom_target(debug
     COMMAND ${CMAKE_GDB}
