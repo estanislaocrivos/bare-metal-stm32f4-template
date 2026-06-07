@@ -159,7 +159,7 @@ add_custom_target(openocd
 )
 
 # Start GDB and connect to OpenOCD (requires OpenOCD running)
-set(CMAKE_GDB "arm-none-eabi-gdb")
+find_program(CMAKE_GDB NAMES gdb-multiarch arm-none-eabi-gdb REQUIRED)
 
 add_custom_target(debug
     COMMAND ${CMAKE_GDB}
